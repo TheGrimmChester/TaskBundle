@@ -12,7 +12,12 @@ This package provides a basic system for managing tasks in the background.
 1. Clone this bundle inside `src/AWHS/` directory.
 2. Enable the bundle in the kernel by adding the following line right after `//AWHS Bundles` in `app/AppKernel.php` file:  
 `new AWHS\TaskBundle\AWHSTaskBundle(),`
-3. Load data fixtures: `php bin/console doctrine:fixtures:load --fixtures=src/AWHS/TaskBundle/DataFixtures/ORM --append`
+3. Append the following configuration to the `app/routing.yml` file:  
+```yaml
+awhs_task:
+    resource: "@AWHSTaskBundle/Resources/config/routing.yml"
+    prefix:   /
+```
 4. Add the following code to the `src/AWHS/UserBundle/Entity/User.php` file:
 ```yaml
 /**
@@ -31,6 +36,9 @@ public function getTasks()
     return $this->tasks;
 }
 ```
+5. Update database & clear cache: `php bin/console doctrine:schema:update --force; php bin/console cache:clear; php bin/console cache:clear --env=prod`  
+You may have to set permissions back to www-data `chown -R www-data:www-data /usr/local/awhspanel/panel/*`
+6. Load data fixtures: `php bin/console doctrine:fixtures:load --fixtures=src/AWHS/TaskBundle/DataFixtures/ORM --append`
 
 ## TODO
 - [ ] Multilingual
