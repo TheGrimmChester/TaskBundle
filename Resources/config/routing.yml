@@ -1,0 +1,12 @@
+awhs_tasks_homepage:
+    path:  /tasks
+    defaults: { _controller: AWHSTaskBundle:Default:index }
+awhs_admin_tasks_homepage:
+    path:  /admin/tasks
+    defaults: { _controller: AWHSTaskBundle:DefaultAdmin:index }
+awhs_admin_task_delete:
+    path:  /admin/task/{task_id}/delete
+    defaults: { _controller: AWHSTaskBundle:DefaultAdmin:delete }
+awhs_admin_task_reset:
+    path:  /admin/task/{task_id}/reset
+    defaults: { _controller: AWHSTaskBundle:DefaultAdmin:reset }
